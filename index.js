@@ -1,19 +1,30 @@
+import express from 'express';
+import http from 'http';
+import { Server } from 'socket.io';
 
-import WebSocket from 'ws';
-const server = new WebSocket.Server({ port: 8080  });
-console.log('Server listening on port 8080...')
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
 
-server.on('connection', (socket) => {
-    console.log('Client connected');
-  
-    socket.on('message', (message) => {
-      console.log(`Received message: ${message}`);
-  
-      // Echo the message back to the client
-      socket.send(message);
-    });
-  
-    socket.on('close', () => {
-      console.log('Client disconnected');
-    });
+io.on('connection', (socket) => {
+  console.log('Socket.IO client connected');
+
+  socket.on('chat message', (message) => {
+    console.log(`Socket.IO message received: ${message}`);
+
+    // Echo the message back to the client
+    socket.emit('chat message', message);
   });
+
+  socket.on('disconnect', () => {
+    console.log('Socket.IO client disconnected');
+  });
+});
+
+server.listen(8080, () => {
+  console.log('Socket.IO server listening on port 8080');
+});
+
+
+
+
