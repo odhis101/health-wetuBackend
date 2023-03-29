@@ -15,6 +15,12 @@ io.on('connection', (socket) => {
     // Echo the message back to the client
     socket.emit('chat message', message);
   });
+  socket.on('user location', (location) => {
+    console.log(`Socket.IO user  location received: ${location}`);
+
+    // Echo the message back to the client
+    socket.emit('user location', location);
+  });
 
   socket.on('disconnect', () => {
     console.log('Socket.IO client disconnected');
