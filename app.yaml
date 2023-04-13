@@ -1,4 +1,4 @@
-runtime: nodejs18
+runtime: nodejs14
 
 # Replace `your-app-name` with the name of your App Engine application
 service: healthwetu
@@ -32,12 +32,16 @@ health_check:
 # Add any necessary firewall rules to allow incoming traffic to your server
 # Note that this is just an example - you should adjust the IP range and priority as needed
 network:
-  ingress:
-    - action: allow
-      priority: 1000
-      ranges: ["0.0.0.0/0"]
+  session_affinity: true
+  forwarded_ports: ['80']
+  name: default
+  rules:
+    - priority: 1000
+      action: allow
+      direction: ingress
+      ranges: ['0.0.0.0/0']
       ports:
-        - "8080"
+        - '8080'
 
 # Configure any necessary resource settings here
 # For example, you can adjust the instance class and disk size based on your application's needs
