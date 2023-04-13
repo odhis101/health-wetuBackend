@@ -32,7 +32,8 @@ health_check:
 # Add any necessary firewall rules to allow incoming traffic to your server
 # Note that this is just an example - you should adjust the IP range and priority as needed
 
-
+network:
+  allow_all: true
 
 
 
