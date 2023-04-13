@@ -13,11 +13,6 @@ env_variables:
 
 # Configure automatic scaling for the instance class and number of instances
 # You can adjust these values based on your application's needs
-automatic_scaling:
-  min_instances: 1
-  max_instances: 5
-  cpu_utilization:
-    target_utilization: 0.5
 
 # Configure health checking for the instance
 # This example uses an HTTP health check, but you can use a different type if needed
