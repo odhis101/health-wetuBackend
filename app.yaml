@@ -31,15 +31,6 @@ health_check:
 
 # Add any necessary firewall rules to allow incoming traffic to your server
 # Note that this is just an example - you should adjust the IP range and priority as needed
-network:
-  ingress:
-    - action: allow
-      priority: 1000
-      source_range: 0.0.0.0/0
-      protocol: tcp
-      ports: ['8080']
-In this example, we allow all incoming traffic from any IP address (0.0.0.0/0) on TCP port 8080. You can adjust the source_range, protocol, and ports as needed for your specific use case.
-
 
 
 
