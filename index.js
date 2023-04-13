@@ -7,6 +7,7 @@ const server = http.createServer(app);
 const io = new Server(server);
 const ambulanceLocation = {};
 
+const port = process.env.PORT || 8080;
 io.on('connect', (socket) => {
   console.log('Socket.IO client connected');
 
@@ -34,8 +35,8 @@ io.on('connect', (socket) => {
   });
 });
 
-server.listen(8080, () => {
-  console.log('Socket.IO server listening on port 8080');
+server.listen(port, () => {
+  console.log(`Socket.IO server listening on port ${port}`);
 });
 
 
