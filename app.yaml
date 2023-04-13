@@ -1,1 +1,46 @@
 runtime: nodejs18
+
+# Replace `your-app-name` with the name of your App Engine application
+service: healthwetu
+
+# Replace `your-port-number` with the port number that your Socket.IO server listens on
+env_variables:
+  PORT: "8080"
+
+# Add any additional environment variables your app requires here
+# env_variables:
+#   VARIABLE_NAME: "variable-value"
+
+# Configure automatic scaling for the instance class and number of instances
+# You can adjust these values based on your application's needs
+automatic_scaling:
+  min_instances: 1
+  max_instances: 5
+  cpu_utilization:
+    target_utilization: 0.5
+
+# Configure health checking for the instance
+# This example uses an HTTP health check, but you can use a different type if needed
+# You can also adjust the health check settings based on your application's needs
+health_check:
+  enable_health_check: true
+  check_interval_sec: 30
+  timeout_sec: 4
+  unhealthy_threshold: 2
+  healthy_threshold: 2
+
+# Add any necessary firewall rules to allow incoming traffic to your server
+# Note that this is just an example - you should adjust the IP range and priority as needed
+network:
+  ingress:
+    - action: allow
+      priority: 1000
+      ranges: ["0.0.0.0/0"]
+      ports:
+        - "8080"
+
+# Configure any necessary resource settings here
+# For example, you can adjust the instance class and disk size based on your application's needs
+# instance_class: F2
+# automatic_scaling:
+#   disk_gb: 10
